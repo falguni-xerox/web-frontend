@@ -1,0 +1,81 @@
+/* =================================
+   GLOBAL RESET
+================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* =================================
+   GLOBAL WIDTH / OVERFLOW FIX
+================================= */
+
+html,
+body {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+#root {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* =================================
+   BODY
+================================= */
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: #f5f7fb;
+  color: #222;
+  line-height: 1.6;
+}
+
+/* =================================
+   IMAGES
+================================= */
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* =================================
+   LINKS
+================================= */
+
+a {
+  text-decoration: none;
+}
+
+/* =================================
+   CONTAINER
+================================= */
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* =================================
+   MOBILE SAFETY
+================================= */
+
+@media (max-width: 600px) {
+  .container {
+    width: calc(100% - 30px);
+    max-width: 100%;
+  }
+
+  section {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+}

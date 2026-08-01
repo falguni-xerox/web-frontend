@@ -1,0 +1,234 @@
+```css
+/* =================================
+   SERVICE CARD
+================================= */
+
+.service-card {
+  position: relative;
+  overflow: hidden;
+
+  width: 100%;
+  min-height: 190px;
+
+  padding: 24px 20px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  background: #ffffff;
+
+  border: 1px solid #e5e7eb;
+  border-radius: 14px;
+
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    border-color 0.25s ease;
+}
+
+
+/* =================================
+   HOVER
+================================= */
+
+.service-card:hover {
+  transform: translateY(-5px);
+
+  box-shadow:
+    0 10px 25px rgba(0, 0, 0, 0.10);
+
+  border-color: #d6dce5;
+}
+
+
+/* =================================
+   SERVICE ICON
+================================= */
+
+.service-icon {
+  width: 70px;
+  height: 70px;
+
+  margin-bottom: 14px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  overflow: hidden;
+
+  border-radius: 14px;
+
+  background: #f1f5f9;
+
+  color: #1769aa;
+
+  font-size: 30px;
+
+  flex-shrink: 0;
+}
+
+
+/* =================================
+   SERVICE IMAGE
+================================= */
+
+.service-card-image {
+  display: block;
+
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  border-radius: 14px;
+}
+
+
+/* =================================
+   CONTENT
+================================= */
+
+.service-card-content {
+  width: 100%;
+}
+
+
+/* =================================
+   TITLE
+================================= */
+
+.service-card h3 {
+  margin: 0;
+
+  font-size: 17px;
+  line-height: 1.35;
+
+  font-weight: 700;
+
+  color: #1f2937;
+}
+
+
+/* =================================
+   DESCRIPTION
+================================= */
+
+.service-description {
+  margin: 8px 0 0;
+
+  color: #6b7280;
+
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+
+/* =================================
+   PRICE
+================================= */
+
+.service-price {
+  display: inline-block;
+
+  margin-top: 10px;
+  padding: 4px 10px;
+
+  font-size: 15px;
+  font-weight: 700;
+
+  color: #176b36;
+
+  background: #e8f7ee;
+
+  border-radius: 6px;
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 768px) {
+
+  .service-card {
+    min-height: 175px;
+
+    padding: 20px 16px;
+
+    border-radius: 12px;
+  }
+
+  .service-icon {
+    width: 62px;
+    height: 62px;
+
+    margin-bottom: 12px;
+
+    font-size: 26px;
+
+    border-radius: 12px;
+  }
+
+  .service-card h3 {
+    font-size: 16px;
+  }
+
+  .service-description {
+    font-size: 13px;
+  }
+
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 480px) {
+
+  .service-card {
+    min-height: 160px;
+
+    padding: 18px 12px;
+
+    border-radius: 10px;
+  }
+
+  .service-icon {
+    width: 56px;
+    height: 56px;
+
+    margin-bottom: 10px;
+
+    font-size: 23px;
+
+    border-radius: 10px;
+  }
+
+  .service-card h3 {
+    font-size: 15px;
+  }
+
+  .service-description {
+    margin-top: 6px;
+
+    font-size: 12px;
+    line-height: 1.4;
+  }
+
+  .service-price {
+    margin-top: 8px;
+
+    font-size: 14px;
+    padding: 3px 8px;
+  }
+
+}
+```

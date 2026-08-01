@@ -1,0 +1,330 @@
+/* =================================
+   RESET
+================================= */
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+
+/* =================================
+   NAVBAR
+================================= */
+
+.navbar {
+  width: 100%;
+  background: #0d47a1;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+
+/* =================================
+   NAVBAR CONTAINER
+================================= */
+
+.navbar .container {
+  width: 90%;
+  max-width: 1200px;
+  min-height: 70px;
+  margin: 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+
+/* =================================
+   LOGO
+================================= */
+
+.logo {
+  color: #ffffff;
+  text-decoration: none;
+
+  font-size: 28px;
+  font-weight: 700;
+
+  white-space: nowrap;
+  transition: 0.3s ease;
+}
+
+.logo:hover {
+  color: #ffd54f;
+}
+
+
+/* =================================
+   NAV MENU
+================================= */
+
+.nav-menu {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+
+  gap: 25px;
+}
+
+.nav-menu a {
+  position: relative;
+
+  color: #ffffff;
+  text-decoration: none;
+
+  font-size: 17px;
+  font-weight: 500;
+
+  padding: 8px 0;
+
+  transition: color 0.3s ease;
+}
+
+.nav-menu a:hover {
+  color: #ffd54f;
+}
+
+
+/* =================================
+   ACTIVE NAV LINK
+================================= */
+
+.nav-menu a.active-link {
+  color: #ffffff;
+  font-weight: 700;
+}
+
+.nav-menu a.active-link::after {
+  content: "";
+
+  position: absolute;
+  left: 0;
+  bottom: 0;
+
+  width: 100%;
+  height: 2px;
+
+  background: #ffd54f;
+  border-radius: 2px;
+}
+
+
+/* =================================
+   UPLOAD BUTTON
+================================= */
+
+.upload-btn {
+  background: #ffffff;
+  color: #0d47a1 !important;
+
+  padding: 10px 18px !important;
+
+  border-radius: 8px;
+
+  font-weight: 700 !important;
+
+  transition:
+    background 0.3s ease,
+    color 0.3s ease,
+    transform 0.2s ease;
+}
+
+.upload-btn:hover {
+  background: #ffd54f;
+  color: #0d47a1 !important;
+
+  transform: translateY(-1px);
+}
+
+.upload-btn::after {
+  display: none !important;
+}
+
+
+/* =================================
+   HAMBURGER BUTTON
+================================= */
+
+.menu-toggle {
+  display: none;
+
+  background: transparent;
+  border: none;
+
+  color: #ffffff;
+
+  font-size: 26px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  padding: 6px;
+
+  -webkit-tap-highlight-color: transparent;
+}
+
+.menu-toggle:focus {
+  outline: none;
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 900px) {
+
+  .navbar .container {
+    width: 92%;
+  }
+
+  .nav-menu {
+    gap: 18px;
+  }
+
+  .nav-menu a {
+    font-size: 16px;
+  }
+
+  .logo {
+    font-size: 25px;
+  }
+}
+
+
+/* =================================
+   MOBILE NAVBAR
+================================= */
+
+@media (max-width: 768px) {
+
+  .navbar .container {
+    width: 92%;
+    min-height: 58px;
+
+    display: flex;
+    flex-wrap: wrap;
+
+    justify-content: flex-start;
+    align-items: center;
+  }
+
+
+  /* Hamburger */
+
+  .menu-toggle {
+    display: block;
+
+    order: 1;
+
+    margin-right: 10px;
+  }
+
+
+  /* Logo */
+
+  .logo {
+    order: 2;
+
+    font-size: 20px;
+  }
+
+
+  /* Menu */
+
+  .nav-menu {
+    order: 3;
+
+    display: none;
+
+    width: 100%;
+
+    flex-direction: column;
+    align-items: stretch;
+
+    gap: 0;
+
+    padding: 10px 0 15px;
+  }
+
+
+  /* Open Menu */
+
+  .nav-menu.active {
+    display: flex;
+  }
+
+
+  /* Mobile Links */
+
+  .nav-menu a {
+    width: 100%;
+
+    font-size: 16px;
+
+    padding: 12px 5px;
+
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+  }
+
+
+  .nav-menu a:last-child {
+    border-bottom: none;
+  }
+
+
+  /* Active Link */
+
+  .nav-menu a.active-link::after {
+    display: none;
+  }
+
+
+  /* Upload Button */
+
+  .nav-menu .upload-btn {
+    width: 100%;
+
+    margin-top: 10px;
+
+    text-align: center;
+
+    padding: 11px 15px !important;
+  }
+}
+
+
+/* =================================
+   SMALL MOBILE
+================================= */
+
+@media (max-width: 480px) {
+
+  .navbar .container {
+    width: 94%;
+    min-height: 56px;
+  }
+
+  .menu-toggle {
+    font-size: 24px;
+    margin-right: 8px;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+
+  .nav-menu a {
+    font-size: 15px;
+    padding: 11px 5px;
+  }
+}

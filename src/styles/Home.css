@@ -1,0 +1,925 @@
+/* =================================
+   HERO
+================================= */
+
+.hero {
+  width: 100%;
+  max-width: 100%;
+  padding: 80px 0;
+  min-height: 80vh;
+  overflow-x: hidden;
+}
+
+.hero-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 50px;
+}
+
+.hero-content {
+  min-width: 0;
+}
+
+.hero-content h1 {
+  font-size: 48px;
+  line-height: 1.2;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 20px;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.btn {
+  display: inline-block;
+  padding: 15px 35px;
+  border-radius: 8px;
+  text-decoration: none;
+  font-size: 18px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-primary {
+  background: #1565c0;
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background: #0d47a1;
+}
+
+.btn-secondary {
+  background: #25d366;
+  color: #ffffff;
+}
+
+.btn-secondary:hover {
+  background: #128c7e;
+}
+
+.hero-image {
+  min-width: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.hero-image img {
+  width: 100%;
+  max-width: 500px;
+  height: 400px;
+  object-fit: contain;
+  border-radius: 16px;
+}
+
+
+/* =================================
+   SERVICES
+================================= */
+
+.services-section {
+  width: 100%;
+  max-width: 100%;
+  padding: 80px 20px;
+  text-align: center;
+  background: #f5f7fb;
+  overflow-x: hidden;
+}
+
+.services-section h2 {
+  font-size: 38px;
+  margin-bottom: 45px;
+  color: #0d47a1;
+}
+
+.services-grid {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.service-card {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
+  background: #ffffff;
+  padding: 35px 20px;
+  border-radius: 16px;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.08);
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.service-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+}
+
+.service-icon {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 38px;
+  color: #0d47a1;
+
+  background: #eaf2ff;
+  border-radius: 50%;
+}
+
+.service-card h3 {
+  font-size: 21px;
+  color: #222;
+  overflow-wrap: anywhere;
+}
+
+
+/* =================================
+   WHY CHOOSE US
+================================= */
+
+.why-choose-section {
+  width: 100%;
+  max-width: 100%;
+  padding: 80px 20px;
+  text-align: center;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+.why-choose-section h2 {
+  font-size: 38px;
+  color: #0d47a1;
+  margin-bottom: 20px;
+}
+
+.why-choose-intro {
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+  font-size: 19px;
+  color: #555;
+  overflow-wrap: anywhere;
+}
+
+.why-choose-grid {
+  width: 100%;
+  max-width: 1000px;
+  margin: 45px auto 0;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 25px;
+}
+
+.why-card {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
+  padding: 30px 20px;
+
+  background: #f5f7fb;
+  border-radius: 14px;
+  border: 1px solid #e5e9f0;
+
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.why-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+}
+
+.why-card h3 {
+  color: #0d47a1;
+  font-size: 21px;
+  margin-bottom: 12px;
+  overflow-wrap: anywhere;
+}
+
+.why-card p {
+  color: #555;
+  font-size: 16px;
+  overflow-wrap: anywhere;
+}
+
+
+/* =================================
+   CTA
+================================= */
+
+.cta-section {
+  width: 100%;
+  max-width: 100%;
+  padding: 30px 15px;
+  text-align: center;
+  background: #0d47a1;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.cta-section h2 {
+  font-size: 28px;
+  margin-bottom: 15px;
+}
+
+.cta-section p {
+  width: 100%;
+  max-width: 650px;
+  margin: 0 auto;
+  font-size: 16px;
+  opacity: 0.95;
+  overflow-wrap: anywhere;
+}
+
+
+/* =================================
+   CONTACT / VISIT
+================================= */
+
+.contact-info-section {
+  width: 100%;
+  max-width: 100%;
+  padding: 70px 20px;
+  text-align: center;
+  background: #f5f7fb;
+  overflow-x: hidden;
+}
+
+.contact-info-section h2 {
+  font-size: 36px;
+  color: #0d47a1;
+  margin-bottom: 15px;
+}
+
+.contact-info-section > .container {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.contact-info-section > .container > p {
+  width: 100%;
+  max-width: 100%;
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 10px;
+  overflow-wrap: anywhere;
+}
+
+.contact-details {
+  width: 100%;
+  max-width: 100%;
+  margin-top: 25px;
+}
+
+.contact-details p {
+  width: 100%;
+  max-width: 100%;
+  font-size: 18px;
+  margin: 8px 0;
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+
+/* =================================
+   GOOGLE MAP / FIND US
+================================= */
+
+.map-section {
+  width: 100%;
+  max-width: 100%;
+  padding: 70px 20px;
+  text-align: center;
+  background: #ffffff;
+  overflow-x: hidden;
+}
+
+.map-section h2 {
+  font-size: 36px;
+  color: #0d47a1;
+  margin-bottom: 12px;
+}
+
+.map-section > .container {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.map-section > .container > p {
+  width: 100%;
+  max-width: 100%;
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 30px;
+  overflow-wrap: anywhere;
+}
+
+.map-container {
+  width: 100%;
+  max-width: 1000px;
+  height: 400px;
+
+  margin: 0 auto;
+
+  overflow: hidden;
+  border-radius: 16px;
+
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.map-container iframe {
+  width: 100%;
+  max-width: 100%;
+  height: 100%;
+  border: 0;
+  display: block;
+}
+
+
+/* =================================
+   SHOP GALLERY - HOME
+================================= */
+
+.gallery-section {
+  width: 100%;
+  max-width: 100%;
+  padding: 80px 20px;
+  text-align: center;
+  background: #f5f7fb;
+  overflow-x: hidden;
+}
+
+.gallery-section h2 {
+  font-size: 38px;
+  color: #0d47a1;
+  margin-bottom: 12px;
+}
+
+.gallery-intro {
+  width: 100%;
+  max-width: 100%;
+  font-size: 18px;
+  color: #555;
+  margin-bottom: 40px;
+  overflow-wrap: anywhere;
+}
+
+.gallery-grid {
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.gallery-item {
+  width: 100%;
+  min-width: 0;
+  max-width: 100%;
+
+  overflow: hidden;
+  border-radius: 14px;
+  background: #ffffff;
+
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+
+  transition: transform 0.3s ease;
+}
+
+.gallery-item:hover img {
+  transform: scale(1.05);
+}
+
+.gallery-button {
+  margin-top: 35px;
+}
+
+
+/* =================================
+   TABLET
+================================= */
+
+@media (max-width: 900px) {
+
+  .services-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .why-choose-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .gallery-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 600px) {
+
+  /* GENERAL MOBILE WIDTH */
+
+  .hero,
+  .services-section,
+  .why-choose-section,
+  .cta-section,
+  .contact-info-section,
+  .map-section,
+  .gallery-section {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+
+  /* HERO */
+
+  .hero {
+    padding: 50px 0;
+    min-height: auto;
+  }
+
+  .hero-container {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .hero-content {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .hero-content h1 {
+    font-size: 30px;
+    line-height: 1.25;
+    margin-bottom: 15px;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+    margin-bottom: 25px;
+    overflow-wrap: anywhere;
+  }
+
+  .hero-buttons {
+    width: 100%;
+    max-width: 100%;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .btn {
+    padding: 12px 20px;
+    font-size: 15px;
+    max-width: 100%;
+  }
+
+  .hero-image {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .hero-image img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    max-height: 300px;
+  }
+
+
+  /* SERVICES */
+
+  .services-section {
+    padding: 60px 15px;
+  }
+
+  .services-section h2 {
+    font-size: 30px;
+    margin-bottom: 30px;
+  }
+
+  .services-grid {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .service-card {
+    width: 100%;
+    max-width: 100%;
+    padding: 25px 18px;
+  }
+
+  .service-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 32px;
+    margin-bottom: 15px;
+  }
+
+  .service-card h3 {
+    font-size: 19px;
+  }
+
+
+  /* WHY CHOOSE */
+
+  .why-choose-section {
+    padding: 60px 15px;
+  }
+
+  .why-choose-section h2 {
+    font-size: 30px;
+    line-height: 1.2;
+    margin-bottom: 15px;
+    overflow-wrap: anywhere;
+  }
+
+  .why-choose-intro {
+    width: 100%;
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .why-choose-grid {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    margin-top: 30px;
+
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .why-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 25px 18px;
+  }
+
+  .why-card h3 {
+    font-size: 19px;
+    margin-bottom: 10px;
+  }
+
+  .why-card p {
+    font-size: 15px;
+    line-height: 1.5;
+  }
+
+
+  /* CTA / NEED HELP */
+
+  .cta-section {
+    padding: 45px 15px;
+  }
+
+  .cta-section .container {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    width: 100%;
+    max-width: 100%;
+    font-size: 27px;
+    line-height: 1.25;
+    margin-bottom: 12px;
+    overflow-wrap: anywhere;
+  }
+
+  .cta-section p {
+    width: 100%;
+    max-width: 320px;
+    font-size: 15px;
+    line-height: 1.5;
+    margin: 0 auto;
+  }
+
+
+  /* CONTACT / VISIT */
+
+  .contact-info-section {
+    padding: 55px 15px;
+  }
+
+  .contact-info-section h2 {
+    font-size: 30px;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+
+  .contact-info-section > .container {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-info-section > .container > p {
+    width: 100%;
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .contact-details {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 20px;
+  }
+
+  .contact-details p {
+    width: 100%;
+    max-width: 100%;
+    font-size: 15px;
+    line-height: 1.5;
+    overflow-wrap: anywhere;
+  }
+
+
+  /* FIND US / MAP */
+
+  .map-section {
+    padding: 55px 15px;
+  }
+
+  .map-section h2 {
+    font-size: 30px;
+    line-height: 1.2;
+    overflow-wrap: anywhere;
+  }
+
+  .map-section > .container {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .map-section > .container > p {
+    width: 100%;
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 25px;
+  }
+
+  .map-container {
+    width: 100%;
+    max-width: 100%;
+    height: 300px;
+    border-radius: 12px;
+  }
+
+
+  /* GALLERY */
+
+  .gallery-section {
+    padding: 60px 15px;
+  }
+
+  .gallery-section h2 {
+    font-size: 30px;
+    line-height: 1.2;
+  }
+
+  .gallery-intro {
+    font-size: 16px;
+    line-height: 1.5;
+    margin-bottom: 30px;
+  }
+
+  .gallery-grid {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .gallery-item {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    max-width: 100%;
+    height: 240px;
+  }
+
+  .gallery-button {
+    margin-top: 25px;
+  }
+}
+/* =================================
+   FINAL MOBILE LAYOUT FIX
+================================= */
+
+@media (max-width: 600px) {
+
+  /* IMPORTANT: Prevent flex/grid squeezing */
+  .why-choose-section .container,
+  .gallery-section .container {
+    display: block;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+
+  /* ===============================
+     WHY CHOOSE US
+  =============================== */
+
+  .why-choose-section {
+    width: 100%;
+    padding: 55px 15px;
+    overflow: hidden;
+  }
+
+  .why-choose-section h2 {
+    width: 100%;
+    max-width: 100%;
+    font-size: 30px;
+    line-height: 1.25;
+    text-align: center;
+    word-break: normal;
+    overflow-wrap: normal;
+    margin-bottom: 15px;
+  }
+
+  .why-choose-intro {
+    width: 100%;
+    max-width: 100%;
+    text-align: center;
+    font-size: 16px;
+    line-height: 1.5;
+  }
+
+  .why-choose-grid {
+    display: grid;
+    width: 100%;
+    max-width: 100%;
+    margin: 30px 0 0;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .why-card {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+    padding: 25px 18px;
+    text-align: center;
+  }
+
+  .why-card h3 {
+    font-size: 20px;
+    line-height: 1.3;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+  .why-card p {
+    font-size: 15px;
+    line-height: 1.6;
+    word-break: normal;
+    overflow-wrap: normal;
+  }
+
+
+  /* ===============================
+     OUR SHOP
+  =============================== */
+
+  .gallery-section {
+    width: 100%;
+    padding: 55px 15px;
+    overflow: hidden;
+  }
+
+  .gallery-section .container {
+    display: block;
+  }
+
+  .gallery-section h2 {
+    width: 100%;
+    max-width: 100%;
+    font-size: 30px;
+    line-height: 1.25;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+
+  .gallery-intro {
+    width: 100%;
+    max-width: 100%;
+    font-size: 16px;
+    line-height: 1.5;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .gallery-grid {
+    width: 100%;
+    max-width: 100%;
+    margin: 0;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 18px;
+  }
+
+  .gallery-item {
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
+
+  .gallery-item img {
+    width: 100%;
+    max-width: 100%;
+    height: 240px;
+    object-fit: cover;
+  }
+
+  .gallery-button {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 25px;
+    text-align: center;
+  }
+
+  .gallery-button .btn {
+    display: inline-block;
+    max-width: 100%;
+  }
+}
