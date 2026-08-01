@@ -3,7 +3,7 @@ import ServiceCard from "../components/services/ServiceCard";
 
 function Services() {
   const API_URL =
-    "http://localhost:5000/api/services/active";
+    "https://falguni-upload-backend.onrender.com/api/services/active";
 
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -22,17 +22,20 @@ function Services() {
 
       if (!response.ok) {
         throw new Error(
-          "Failed to fetch services"
+          `Failed to fetch services (${response.status})`
         );
       }
 
       const data = await response.json();
 
-      setServices(
-        Array.isArray(data.services)
-          ? data.services
-          : []
-      );
+      if (data.success && Array.isArray(data.services)) {
+        setServices(data.services);
+      } else {
+        setServices([]);
+        throw new Error(
+          "Invalid services response from server"
+        );
+      }
     } catch (error) {
       console.error(
         "Fetch public services error:",
@@ -61,8 +64,7 @@ function Services() {
 
   const groupedServices = services.reduce(
     (groups, service) => {
-      const category =
-        service.category;
+      const category = service.category;
 
       const categoryId =
         category?._id ||
@@ -104,7 +106,6 @@ function Services() {
 
   return (
     <section className="services-page">
-
       <div className="container">
 
         {/* =================================
@@ -163,12 +164,10 @@ function Services() {
         {!loading &&
           !error &&
           categories.length > 0 && (
-
             <div className="services-categories">
 
               {categories.map(
                 (category) => (
-
                   <div
                     className="service-category"
                     key={category.id}
@@ -190,15 +189,10 @@ function Services() {
 
                       {category.services.map(
                         (service) => (
-
                           <ServiceCard
                             key={service._id}
-                            title={
-                              service.name
-                            }
-                            icon={
-                              service.icon
-                            }
+                            title={service.name}
+                            icon={service.icon}
                             description={
                               service.shortDescription
                             }
@@ -209,14 +203,12 @@ function Services() {
                               service.price
                             }
                           />
-
                         )
                       )}
 
                     </div>
 
                   </div>
-
                 )
               )}
 
@@ -224,7 +216,6 @@ function Services() {
           )}
 
       </div>
-
     </section>
   );
 }
