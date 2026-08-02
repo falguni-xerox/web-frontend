@@ -16,12 +16,14 @@ import {
   PiImageSquareBold,
 } from "react-icons/pi";
 
+import API_BASE_URL from "../../api";
+
 function ServicesSection() {
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const API_URL =
-    "http://localhost:5000/api/service-categories/active";
+    `${API_BASE_URL}/service-categories/active`;
 
   useEffect(() => {
     const fetchCategories = async () => {
@@ -29,12 +31,21 @@ function ServicesSection() {
         const response = await fetch(API_URL);
 
         if (!response.ok) {
-          throw new Error("Failed to fetch service categories");
+          throw new Error(
+            `Failed to fetch service categories (${response.status})`
+          );
         }
 
         const data = await response.json();
 
-        setCategories(data.categories || []);
+        if (
+          data.success &&
+          Array.isArray(data.categories)
+        ) {
+          setCategories(data.categories);
+        } else {
+          setCategories([]);
+        }
       } catch (error) {
         console.error(
           "Fetch service categories error:",
@@ -79,7 +90,6 @@ function ServicesSection() {
       <h2>Our Services</h2>
 
       <div className="services-grid">
-
         {categories.map((category) => (
           <ServiceCard
             key={category._id}
@@ -87,7 +97,6 @@ function ServicesSection() {
             title={category.name}
           />
         ))}
-
       </div>
     </section>
   );
