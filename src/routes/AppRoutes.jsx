@@ -17,69 +17,96 @@ import AdminServices from "../pages/admin/AdminServices";
 function AppRoutes() {
   return (
     <BrowserRouter>
-      <Layout>
-        <Routes>
 
-          {/* PUBLIC WEBSITE */}
+      <Routes>
 
-          <Route
-            path="/"
-            element={<Home />}
-          />
+        {/* =================================
+            PUBLIC WEBSITE
+        ================================= */}
 
-          <Route
-            path="/services"
-            element={<Services />}
-          />
+        <Route
+          path="/"
+          element={
+            <Layout>
+              <Home />
+            </Layout>
+          }
+        />
 
-          <Route
-            path="/about"
-            element={<About />}
-          />
+        <Route
+          path="/services"
+          element={
+            <Layout>
+              <Services />
+            </Layout>
+          }
+        />
 
-          <Route
-            path="/contact"
-            element={<Contact />}
-          />
+        <Route
+          path="/gallery"
+          element={
+            <Layout>
+              <Gallery />
+            </Layout>
+          }
+        />
 
-          <Route
-            path="/gallery"
-            element={<Gallery />}
-          />
+        <Route
+          path="/about"
+          element={
+            <Layout>
+              <About />
+            </Layout>
+          }
+        />
 
-
-          {/* ADMIN */}
-
-          <Route
-            path="/admin"
-            element={<AdminDashboard />}
-          />
-
-          <Route
-            path="/admin/settings"
-            element={<AdminSettings />}
-          />
-
-          <Route
-            path="/admin/service-categories"
-            element={<AdminServiceCategories />}
-          />
-
-          <Route
-            path="/admin/services"
-            element={<AdminServices />}
-          />
+        <Route
+          path="/contact"
+          element={
+            <Layout>
+              <Contact />
+            </Layout>
+          }
+        />
 
 
-          {/* 404 */}
+        {/* =================================
+            ADMIN
+            NO PUBLIC LAYOUT / NAVBAR
+        ================================= */}
 
-          <Route
-            path="*"
-            element={<NotFound />}
-          />
+        <Route
+          path="/admin"
+          element={<AdminDashboard />}
+        />
 
-        </Routes>
-      </Layout>
+        <Route
+          path="/admin/settings"
+          element={<AdminSettings />}
+        />
+
+        <Route
+          path="/admin/service-categories"
+          element={<AdminServiceCategories />}
+        />
+
+        <Route
+          path="/admin/services"
+          element={<AdminServices />}
+        />
+
+
+        {/* =================================
+            404
+        ================================= */}
+
+        <Route
+          path="*"
+          element={<NotFound />}
+        />
+
+      </Routes>
+
     </BrowserRouter>
   );
 }
