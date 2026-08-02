@@ -3,7 +3,7 @@ import "../../styles/AdminSettings.css";
 
 function AdminServiceCategories() {
   const API_URL =
-    "http://localhost:5000/api/service-categories";
+    "https://falguni-upload-backend.onrender.com/api/service-categories";
 
   const [categories, setCategories] = useState([]);
 
@@ -38,16 +38,22 @@ function AdminServiceCategories() {
       const response = await fetch(API_URL);
 
       if (!response.ok) {
-        throw new Error("Failed to fetch categories");
+        throw new Error(
+          `Failed to fetch categories (${response.status})`
+        );
       }
 
       const data = await response.json();
 
-      setCategories(
-        data.categories ||
-          data.serviceCategories ||
-          []
-      );
+      if (data.success && Array.isArray(data.categories)) {
+        setCategories(data.categories);
+      } else {
+        setCategories(
+          data.categories ||
+            data.serviceCategories ||
+            []
+        );
+      }
     } catch (error) {
       console.error(
         "Fetch categories error:",
@@ -658,6 +664,7 @@ function AdminServiceCategories() {
                               "0 0 6px",
                           }}
                         >
+
                           {category.icon && (
                             <span
                               style={{
@@ -672,6 +679,7 @@ function AdminServiceCategories() {
                           )}
 
                           {category.name}
+
                         </h3>
 
                         <p
