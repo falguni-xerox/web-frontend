@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import Layout from "../components/layout/Layout";
+import AdminLayout from "../components/layout/AdminLayout";
 
 import Gallery from "../pages/Gallery";
 import Home from "../pages/Home";
@@ -72,27 +73,42 @@ function AppRoutes() {
 
         {/* =================================
             ADMIN
-            NO PUBLIC LAYOUT / NAVBAR
         ================================= */}
 
         <Route
           path="/admin"
-          element={<AdminDashboard />}
+          element={
+            <AdminLayout>
+              <AdminDashboard />
+            </AdminLayout>
+          }
         />
 
         <Route
           path="/admin/settings"
-          element={<AdminSettings />}
+          element={
+            <AdminLayout>
+              <AdminSettings />
+            </AdminLayout>
+          }
         />
 
         <Route
           path="/admin/service-categories"
-          element={<AdminServiceCategories />}
+          element={
+            <AdminLayout>
+              <AdminServiceCategories />
+            </AdminLayout>
+          }
         />
 
         <Route
           path="/admin/services"
-          element={<AdminServices />}
+          element={
+            <AdminLayout>
+              <AdminServices />
+            </AdminLayout>
+          }
         />
 
 
