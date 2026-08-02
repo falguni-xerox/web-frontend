@@ -1,4 +1,4 @@
 const API_BASE_URL =
-  "https://falguni-upload-backend.onrender.com/api";
+  "https://web-backend-xi3v.onrender.com/api";
 
 export default API_BASE_URL;

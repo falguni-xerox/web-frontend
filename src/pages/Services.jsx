@@ -7,7 +7,7 @@ function Services() {
   // =================================
 
   const API_URL =
-    "https://falguni-upload-backend.onrender.com/api/services/active";
+    "https://web-backend-xi3v.onrender.com/api/services/active"
 
   // =================================
   // STATE

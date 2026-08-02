@@ -3,10 +3,10 @@ import "../../styles/AdminSettings.css";
 
 function AdminServices() {
  const API_URL =
-  "https://falguni-upload-backend.onrender.com/api/services";
+  "https://web-backend-xi3v.onrender.com/api/services";
 
 const CATEGORY_API_URL =
-  "https://falguni-upload-backend.onrender.com/api/service-categories";
+  "https://web-backend-xi3v.onrender.com/api/service-categories";
 
   const [services, setServices] = useState([]);
   const [categories, setCategories] = useState([]);
