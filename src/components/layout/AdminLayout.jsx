@@ -1,3 +1,4 @@
+import "../../styles/AdminLayout.css";
 import React from "react";
 
 function AdminLayout({ children }) {
