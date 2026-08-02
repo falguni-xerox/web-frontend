@@ -2,8 +2,16 @@ import { useEffect, useState } from "react";
 import ServiceCard from "../components/services/ServiceCard";
 
 function Services() {
+  // =================================
+  // API URL
+  // =================================
+
   const API_URL =
     "https://falguni-upload-backend.onrender.com/api/services/active";
+
+  // =================================
+  // STATE
+  // =================================
 
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -18,7 +26,18 @@ function Services() {
       setLoading(true);
       setError("");
 
+      console.log("Fetching services from:", API_URL);
+
       const response = await fetch(API_URL);
+
+      console.log(
+        "Services API status:",
+        response.status
+      );
+
+      // ---------------------------------
+      // CHECK HTTP RESPONSE
+      // ---------------------------------
 
       if (!response.ok) {
         throw new Error(
@@ -26,25 +45,50 @@ function Services() {
         );
       }
 
+      // ---------------------------------
+      // GET JSON
+      // ---------------------------------
+
       const data = await response.json();
 
-      if (data.success && Array.isArray(data.services)) {
+      console.log(
+        "Services API response:",
+        data
+      );
+
+      // ---------------------------------
+      // VALIDATE RESPONSE
+      // ---------------------------------
+
+      if (
+        data &&
+        data.success === true &&
+        Array.isArray(data.services)
+      ) {
         setServices(data.services);
-      } else {
-        setServices([]);
-        throw new Error(
-          "Invalid services response from server"
-        );
+        return;
       }
+
+      // ---------------------------------
+      // INVALID RESPONSE
+      // ---------------------------------
+
+      throw new Error(
+        "Invalid services response from server"
+      );
+
     } catch (error) {
       console.error(
         "Fetch public services error:",
         error
       );
 
+      setServices([]);
+
       setError(
         "Unable to load services right now."
       );
+
     } finally {
       setLoading(false);
     }
@@ -64,7 +108,8 @@ function Services() {
 
   const groupedServices = services.reduce(
     (groups, service) => {
-      const category = service.category;
+
+      const category = service?.category;
 
       const categoryId =
         category?._id ||
@@ -79,6 +124,10 @@ function Services() {
         category?.slug ||
         "other";
 
+      // ---------------------------------
+      // CREATE CATEGORY
+      // ---------------------------------
+
       if (!groups[categoryId]) {
         groups[categoryId] = {
           id: categoryId,
@@ -88,14 +137,23 @@ function Services() {
         };
       }
 
+      // ---------------------------------
+      // ADD SERVICE
+      // ---------------------------------
+
       groups[categoryId].services.push(
         service
       );
 
       return groups;
+
     },
     {}
   );
+
+  // =================================
+  // CATEGORY ARRAY
+  // =================================
 
   const categories =
     Object.values(groupedServices);
@@ -106,6 +164,7 @@ function Services() {
 
   return (
     <section className="services-page">
+
       <div className="container">
 
         {/* =================================
@@ -125,6 +184,7 @@ function Services() {
 
         </div>
 
+
         {/* =================================
             LOADING
         ================================= */}
@@ -135,6 +195,7 @@ function Services() {
           </div>
         )}
 
+
         {/* =================================
             ERROR
         ================================= */}
@@ -144,6 +205,7 @@ function Services() {
             {error}
           </div>
         )}
+
 
         {/* =================================
             EMPTY
@@ -157,23 +219,28 @@ function Services() {
             </div>
           )}
 
+
         {/* =================================
-            CATEGORIES
+            SERVICES CATEGORIES
         ================================= */}
 
         {!loading &&
           !error &&
           categories.length > 0 && (
+
             <div className="services-categories">
 
               {categories.map(
                 (category) => (
+
                   <div
                     className="service-category"
                     key={category.id}
                   >
 
-                    {/* CATEGORY TITLE */}
+                    {/* =================================
+                        CATEGORY HEADER
+                    ================================= */}
 
                     <div className="service-category-header">
 
@@ -183,12 +250,16 @@ function Services() {
 
                     </div>
 
-                    {/* SERVICES GRID */}
+
+                    {/* =================================
+                        SERVICES GRID
+                    ================================= */}
 
                     <div className="services-grid">
 
                       {category.services.map(
                         (service) => (
+
                           <ServiceCard
                             key={service._id}
                             title={service.name}
@@ -203,19 +274,23 @@ function Services() {
                               service.price
                             }
                           />
+
                         )
                       )}
 
                     </div>
 
                   </div>
+
                 )
               )}
 
             </div>
+
           )}
 
       </div>
+
     </section>
   );
 }
