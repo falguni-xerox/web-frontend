@@ -9,6 +9,7 @@ import About from "../pages/About";
 import Contact from "../pages/Contact";
 import NotFound from "../pages/NotFound";
 
+import AdminDashboard from "../pages/admin/AdminDashboard";
 import AdminSettings from "../pages/admin/AdminSettings";
 import AdminServiceCategories from "../pages/admin/AdminServiceCategories";
 import AdminServices from "../pages/admin/AdminServices";
@@ -20,13 +21,40 @@ function AppRoutes() {
         <Routes>
 
           {/* PUBLIC WEBSITE */}
-          <Route path="/" element={<Home />} />
-          <Route path="/services" element={<Services />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/contact" element={<Contact />} />
-          <Route path="/gallery" element={<Gallery />} />
+
+          <Route
+            path="/"
+            element={<Home />}
+          />
+
+          <Route
+            path="/services"
+            element={<Services />}
+          />
+
+          <Route
+            path="/about"
+            element={<About />}
+          />
+
+          <Route
+            path="/contact"
+            element={<Contact />}
+          />
+
+          <Route
+            path="/gallery"
+            element={<Gallery />}
+          />
+
 
           {/* ADMIN */}
+
+          <Route
+            path="/admin"
+            element={<AdminDashboard />}
+          />
+
           <Route
             path="/admin/settings"
             element={<AdminSettings />}
@@ -42,8 +70,13 @@ function AppRoutes() {
             element={<AdminServices />}
           />
 
+
           {/* 404 */}
-          <Route path="*" element={<NotFound />} />
+
+          <Route
+            path="*"
+            element={<NotFound />}
+          />
 
         </Routes>
       </Layout>
