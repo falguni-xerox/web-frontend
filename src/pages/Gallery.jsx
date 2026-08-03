@@ -63,6 +63,8 @@ function Gallery() {
           <img
             src={selectedImage}
             alt="Falguni Xerox Shop"
+            loading="lazy"
+            decoding="async"
             onClick={(e) => e.stopPropagation()}
           />
         </div>

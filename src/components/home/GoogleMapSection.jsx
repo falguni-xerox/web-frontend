@@ -29,6 +29,9 @@ function GoogleMapSection() {
             src={mapUrl}
             title={`${siteName} Location`}
             loading="lazy"
+            width="100%"
+            height="400"
+            style={{border:0}}
             allowFullScreen
           ></iframe>
         </div>
