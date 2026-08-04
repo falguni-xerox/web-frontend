@@ -1,11 +1,7 @@
 import { useWebsiteSettings } from "../../context/WebsiteSettingsContext";
 
 function Hero() {
-  const { settings, loading } = useWebsiteSettings();
-
-  if (loading) {
-    return null;
-  }
+  const { settings } = useWebsiteSettings();
 
   const siteName =
     settings.siteName || "Falguni Xerox & Computer Work";
@@ -31,11 +27,13 @@ function Hero() {
     settings.whatsappMessage ||
     "Hello Falguni Xerox, I want to print some documents.";
 
-  const cleanWhatsappNumber = whatsappNumber.replace(/\D/g, "");
+  const cleanWhatsappNumber =
+    whatsappNumber.replace(/\D/g, "");
 
-  const whatsappUrl = `https://wa.me/91${cleanWhatsappNumber}?text=${encodeURIComponent(
-    whatsappMessage
-  )}`;
+  const whatsappUrl =
+    `https://wa.me/91${cleanWhatsappNumber}?text=${encodeURIComponent(
+      whatsappMessage
+    )}`;
 
   return (
     <section className="hero">
@@ -68,6 +66,7 @@ function Hero() {
             </a>
 
           </div>
+
         </div>
 
         <div className="hero-image">
