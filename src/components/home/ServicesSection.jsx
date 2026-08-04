@@ -1,4 +1,6 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
+
 import ServiceCard from "../services/ServiceCard";
 
 import {
@@ -8,13 +10,9 @@ import {
   FaFileAlt,
 } from "react-icons/fa";
 
-import {
-  MdOutlineLayers,
-} from "react-icons/md";
+import { MdOutlineLayers } from "react-icons/md";
 
-import {
-  PiImageSquareBold,
-} from "react-icons/pi";
+import { PiImageSquareBold } from "react-icons/pi";
 
 import API_BASE_URL from "../../api";
 
@@ -97,6 +95,12 @@ function ServicesSection() {
             title={category.name}
           />
         ))}
+      </div>
+
+      <div className="services-see-all">
+        <Link to="/services">
+          See All Services
+        </Link>
       </div>
     </section>
   );
