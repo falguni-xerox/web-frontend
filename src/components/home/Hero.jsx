@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { useWebsiteSettings } from "../../context/WebsiteSettingsContext";
 
 function Hero() {
@@ -66,6 +67,13 @@ function Hero() {
             </a>
 
           </div>
+
+          <Link
+            to="/smart-printing-system"
+            className="smart-printing-btn"
+          >
+            Smart Printing System for Xerox Shop Owners
+          </Link>
 
         </div>
 

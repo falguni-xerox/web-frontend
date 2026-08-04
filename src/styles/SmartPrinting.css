@@ -1,0 +1,552 @@
+/* =====================================================
+   SMART PRINTING SYSTEM
+   ===================================================== */
+
+.smart-details-page {
+  min-height: 100vh;
+  background: #f5f8fc;
+  color: #1f2937;
+  text-align: left;
+  padding-bottom: 60px;
+}
+
+/* =====================================================
+   TOP BAR
+   ===================================================== */
+
+.smart-details-topbar {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+}
+
+.smart-back-btn {
+  border: none;
+  background: transparent;
+  color: #1452a3;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 8px 0;
+}
+
+.smart-back-btn:hover {
+  color: #0d3f82;
+}
+
+.smart-language-badge {
+  background: #e8f0ff;
+  color: #1452a3;
+  padding: 7px 14px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* =====================================================
+   HERO
+   ===================================================== */
+
+.smart-details-hero {
+  max-width: 1000px;
+  margin: 10px auto 40px;
+  padding: 55px 30px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+}
+
+.smart-details-hero-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #e8f0ff;
+  border-radius: 50%;
+  font-size: 34px;
+}
+
+.smart-details-hero h1 {
+  margin: 0 0 12px;
+  color: #1452a3;
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.smart-details-hero h2 {
+  margin: 0 0 15px;
+  color: #374151;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.smart-details-hero p {
+  max-width: 760px;
+  margin: 0 auto;
+  color: #5b6472;
+  font-size: 17px;
+  line-height: 1.7;
+}
+
+/* =====================================================
+   COMMON SECTION
+   ===================================================== */
+
+.smart-details-section {
+  max-width: 1100px;
+  margin: 0 auto 45px;
+  padding: 0 24px;
+}
+
+.smart-section-heading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 25px;
+  text-align: center;
+}
+
+.smart-section-heading span {
+  font-size: 25px;
+}
+
+.smart-section-heading h2 {
+  margin: 0;
+  color: #1452a3;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+/* =====================================================
+   FEATURE / BENEFIT GRID
+   ===================================================== */
+
+.smart-details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.smart-detail-card,
+.smart-benefit-card {
+  background: #ffffff;
+  border: 1px solid #e1e7ef;
+  border-radius: 14px;
+  padding: 25px;
+  display: flex;
+  gap: 16px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+  transition:
+    transform 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.smart-detail-card:hover,
+.smart-benefit-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.09);
+}
+
+.smart-card-number {
+  min-width: 38px;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #1452a3;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+}
+
+.smart-detail-card h3,
+.smart-benefit-card h3 {
+  margin: 0 0 7px;
+  color: #172033;
+  font-size: 18px;
+  line-height: 1.4;
+}
+
+.smart-detail-card p,
+.smart-benefit-card p {
+  margin: 0;
+  color: #626b78;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+/* =====================================================
+   HOW IT WORKS
+   ===================================================== */
+
+.smart-steps {
+  max-width: 850px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.smart-step {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  background: #ffffff;
+  border: 1px solid #e1e7ef;
+  border-radius: 14px;
+  padding: 22px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.05);
+}
+
+.smart-step-number {
+  min-width: 42px;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: #1452a3;
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 17px;
+}
+
+.smart-step-content h3 {
+  margin: 0 0 6px;
+  color: #172033;
+  font-size: 18px;
+}
+
+.smart-step-content p {
+  margin: 0;
+  color: #626b78;
+  line-height: 1.6;
+}
+
+/* =====================================================
+   BENEFITS
+   ===================================================== */
+
+.smart-benefit-icon {
+  min-width: 40px;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: #e8f7ee;
+  color: #159447;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/* =====================================================
+   PRICING
+   ===================================================== */
+
+.smart-pricing-card {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 35px;
+  text-align: center;
+  background: #ffffff;
+  border: 2px solid #1452a3;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.smart-pricing-card h3 {
+  margin: 0 0 12px;
+  color: #1452a3;
+  font-size: 24px;
+}
+
+.smart-pricing-card p {
+  margin: 0 auto 18px;
+  max-width: 600px;
+  color: #626b78;
+  line-height: 1.6;
+}
+
+.smart-price {
+  color: #1452a3;
+  font-size: 38px;
+  font-weight: 800;
+}
+
+/* =====================================================
+   FAQ
+   ===================================================== */
+
+.smart-faq-list {
+  max-width: 850px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.smart-faq {
+  background: #ffffff;
+  border: 1px solid #e1e7ef;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.smart-faq summary {
+  padding: 18px 20px;
+  cursor: pointer;
+  color: #172033;
+  font-size: 16px;
+  font-weight: 600;
+  list-style: none;
+}
+
+.smart-faq summary::-webkit-details-marker {
+  display: none;
+}
+
+.smart-faq summary::after {
+  content: "+";
+  float: right;
+  color: #1452a3;
+  font-size: 22px;
+  font-weight: 500;
+}
+
+.smart-faq[open] summary::after {
+  content: "−";
+}
+
+.smart-faq p {
+  padding: 0 20px 18px;
+  color: #626b78;
+  line-height: 1.65;
+}
+
+/* =====================================================
+   CTA
+   ===================================================== */
+
+.smart-cta {
+  max-width: 1000px;
+  margin: 55px auto 0;
+  padding: 45px 25px;
+  text-align: center;
+  background: #1452a3;
+  border-radius: 18px;
+  color: #ffffff;
+}
+
+.smart-cta h2 {
+  margin: 0 0 12px;
+  color: #ffffff;
+  font-size: 30px;
+  font-weight: 700;
+}
+
+.smart-cta p {
+  max-width: 700px;
+  margin: 0 auto 25px;
+  color: #eaf1ff;
+  line-height: 1.6;
+}
+
+.smart-cta-btn {
+  display: inline-block;
+  padding: 13px 28px;
+  border-radius: 8px;
+  background: #ffffff;
+  color: #1452a3;
+  text-decoration: none;
+  font-weight: 700;
+  transition: 0.2s ease;
+}
+
+.smart-cta-btn:hover {
+  transform: translateY(-2px);
+  background: #f2f6ff;
+}
+
+/* =====================================================
+   LOADING
+   ===================================================== */
+
+.smart-details-loading {
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.smart-loading-icon {
+  font-size: 45px;
+  margin-bottom: 15px;
+}
+
+.smart-details-loading h2 {
+  margin: 0 0 8px;
+  color: #1452a3;
+}
+
+.smart-details-loading p {
+  color: #687386;
+}
+
+/* =====================================================
+   ERROR
+   ===================================================== */
+
+.smart-details-error {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 45px 25px;
+  text-align: center;
+  background: #ffffff;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+}
+
+.smart-error-icon {
+  font-size: 42px;
+  margin-bottom: 15px;
+}
+
+.smart-details-error h1 {
+  margin: 0 0 12px;
+  color: #1452a3;
+  font-size: 30px;
+}
+
+.smart-details-error p {
+  margin-bottom: 25px;
+  color: #626b78;
+}
+
+.smart-details-error button {
+  border: none;
+  border-radius: 8px;
+  padding: 12px 22px;
+  background: #1452a3;
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* =====================================================
+   TABLET
+   ===================================================== */
+
+@media (max-width: 900px) {
+  .smart-details-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .smart-details-hero h1 {
+    font-size: 36px;
+  }
+}
+
+/* =====================================================
+   MOBILE
+   ===================================================== */
+
+@media (max-width: 600px) {
+  .smart-details-page {
+    padding-bottom: 35px;
+  }
+
+  .smart-details-topbar {
+    padding: 14px 16px;
+  }
+
+  .smart-details-hero {
+    margin: 5px 14px 30px;
+    padding: 38px 18px;
+    border-radius: 14px;
+  }
+
+  .smart-details-hero-icon {
+    width: 60px;
+    height: 60px;
+    font-size: 28px;
+  }
+
+  .smart-details-hero h1 {
+    font-size: 29px;
+  }
+
+  .smart-details-hero h2 {
+    font-size: 19px;
+  }
+
+  .smart-details-hero p {
+    font-size: 15px;
+  }
+
+  .smart-details-section {
+    padding: 0 14px;
+    margin-bottom: 35px;
+  }
+
+  .smart-section-heading {
+    margin-bottom: 18px;
+  }
+
+  .smart-section-heading h2 {
+    font-size: 24px;
+  }
+
+  .smart-details-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .smart-detail-card,
+  .smart-benefit-card {
+    padding: 20px;
+  }
+
+  .smart-step {
+    padding: 18px;
+    gap: 14px;
+  }
+
+  .smart-pricing-card {
+    padding: 28px 18px;
+  }
+
+  .smart-price {
+    font-size: 32px;
+  }
+
+  .smart-cta {
+    margin: 40px 14px 0;
+    padding: 35px 18px;
+    border-radius: 14px;
+  }
+
+  .smart-cta h2 {
+    font-size: 25px;
+  }
+
+  .smart-details-error {
+    margin: 60px 14px;
+    padding: 35px 18px;
+  }
+}

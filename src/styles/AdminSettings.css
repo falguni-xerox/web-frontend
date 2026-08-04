@@ -228,3 +228,245 @@
   opacity: 0.7;
   cursor: not-allowed;
 }
+/* =========================================
+   SMART PRINTING ADMIN
+========================================= */
+
+.admin-section-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+}
+
+.admin-section-title h2 {
+  margin-bottom: 5px;
+}
+
+.admin-section-title p {
+  margin: 0;
+  color: #6b7280;
+  font-size: 14px;
+}
+
+/* Language Tabs */
+
+.language-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.language-tabs button {
+  border: 1px solid #d1d5db;
+  background: #ffffff;
+  color: #374151;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.language-tabs button:hover {
+  border-color: #1557b0;
+  color: #1557b0;
+}
+
+.language-tabs button.active {
+  background: #1557b0;
+  color: #ffffff;
+  border-color: #1557b0;
+}
+
+/* Add Button */
+
+.admin-add-btn {
+  border: none;
+  background: #1557b0;
+  color: #ffffff;
+  padding: 10px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: 0.2s ease;
+}
+
+.admin-add-btn:hover {
+  background: #0f4691;
+}
+
+/* Smart Printing Item */
+
+.admin-smart-item {
+  border: 1px solid #e1e5eb;
+  background: #ffffff;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 16px;
+}
+
+.admin-smart-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.admin-smart-item-header strong {
+  color: #1557b0;
+  font-size: 15px;
+}
+
+/* Delete Button */
+
+.admin-delete-btn {
+  border: none;
+  background: #fee2e2;
+  color: #dc2626;
+  padding: 7px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 600;
+  transition: 0.2s ease;
+}
+
+.admin-delete-btn:hover {
+  background: #fecaca;
+}
+
+/* Empty Text */
+
+.admin-empty-text {
+  color: #6b7280;
+  font-size: 14px;
+  padding: 10px 0;
+}
+
+/* Smart Printing Form */
+
+.admin-card .form-group {
+  margin-bottom: 20px;
+}
+
+.admin-card .form-group:last-child {
+  margin-bottom: 0;
+}
+
+.admin-card .form-group label {
+  display: block;
+  margin-bottom: 7px;
+  font-weight: 600;
+  color: #1f2937;
+}
+
+.admin-card .form-group input,
+.admin-card .form-group textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid #d1d5db;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-family: inherit;
+  font-size: 14px;
+  background: #ffffff;
+  color: #111827;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+.admin-card .form-group input:focus,
+.admin-card .form-group textarea:focus {
+  border-color: #1557b0;
+  box-shadow: 0 0 0 3px rgba(21, 87, 176, 0.1);
+}
+
+.admin-card .form-group textarea {
+  resize: vertical;
+  min-height: 90px;
+}
+
+/* Checkbox */
+
+.checkbox-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.checkbox-row input {
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Message */
+
+.admin-message {
+  margin: 20px 0;
+  padding: 12px 15px;
+  border-radius: 8px;
+  background: #ecfdf5;
+  color: #047857;
+  border: 1px solid #a7f3d0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* Save Button */
+
+.admin-save-btn {
+  width: 100%;
+  border: none;
+  background: #1557b0;
+  color: #ffffff;
+  padding: 14px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 700;
+  margin: 10px 0 30px;
+  transition: 0.2s ease;
+}
+
+.admin-save-btn:hover {
+  background: #0f4691;
+}
+
+.admin-save-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* Mobile */
+
+@media (max-width: 768px) {
+  .admin-section-title {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .admin-add-btn {
+    width: 100%;
+  }
+
+  .language-tabs {
+    width: 100%;
+  }
+
+  .language-tabs button {
+    flex: 1;
+  }
+
+  .admin-smart-item {
+    padding: 15px;
+  }
+}

@@ -14,6 +14,10 @@ import AdminDashboard from "../pages/admin/AdminDashboard";
 import AdminSettings from "../pages/admin/AdminSettings";
 import AdminServiceCategories from "../pages/admin/AdminServiceCategories";
 import AdminServices from "../pages/admin/AdminServices";
+import AdminSmartPrinting from "../pages/admin/AdminSmartPrinting";
+
+import SmartPrintingLanguage from "../pages/SmartPrintingLanguage";
+import SmartPrintingDetails from "../pages/SmartPrintingDetails";
 
 function AppRoutes() {
   return (
@@ -72,6 +76,25 @@ function AppRoutes() {
 
 
         {/* =================================
+            SMART PRINTING SYSTEM
+        ================================= */}
+
+        <Route
+          path="/smart-printing-system"
+          element={
+            <SmartPrintingLanguage />
+          }
+        />
+
+        <Route
+          path="/smart-printing-system/:language"
+          element={
+            <SmartPrintingDetails />
+          }
+        />
+
+
+        {/* =================================
             ADMIN
         ================================= */}
 
@@ -111,6 +134,15 @@ function AppRoutes() {
           }
         />
 
+        <Route
+          path="/admin/smart-printing"
+          element={
+            <AdminLayout>
+              <AdminSmartPrinting />
+            </AdminLayout>
+          }
+        />
+
 
         {/* =================================
             404
@@ -118,7 +150,9 @@ function AppRoutes() {
 
         <Route
           path="*"
-          element={<NotFound />}
+          element={
+            <NotFound />
+          }
         />
 
       </Routes>
