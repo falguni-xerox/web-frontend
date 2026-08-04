@@ -94,6 +94,30 @@ function AdminDashboard() {
           </div>
         </Link>
 
+
+        {/* SMART PRINTING SYSTEM */}
+        <Link
+          to="/admin/smart-printing"
+          style={{
+            textDecoration: "none",
+            color: "inherit",
+          }}
+        >
+          <div className="settings-card">
+            <h2>🖨️ Smart Printing System</h2>
+
+            <p>
+              Manage multilingual Smart Printing
+              System content, demo video, features,
+              pricing, FAQs and CTA.
+            </p>
+
+            <strong>
+              Manage Smart Printing →
+            </strong>
+          </div>
+        </Link>
+
       </div>
 
     </section>
