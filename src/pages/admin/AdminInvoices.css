@@ -1,0 +1,343 @@
+/* =================================
+   INVOICE PAGE
+================================= */
+
+.invoice-page {
+  min-height: 100%;
+  padding: 30px;
+  background: #f4f7fb;
+  font-family:
+    "Segoe UI",
+    Arial,
+    "Noto Sans",
+    sans-serif;
+}
+
+.invoice-page .invoice-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+/* =================================
+   HEADER
+================================= */
+
+.invoice-page .invoice-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+}
+
+.invoice-page .invoice-title {
+  margin: 0;
+  font-size: 30px;
+  font-weight: 700;
+  color: #172033;
+}
+
+.invoice-page .invoice-subtitle {
+  margin: 6px 0 0;
+  color: #667085;
+  font-size: 14px;
+}
+
+
+/* =================================
+   CARD
+================================= */
+
+.invoice-page .invoice-card {
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 20px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.05);
+}
+
+
+/* =================================
+   CUSTOMER / DATE
+================================= */
+
+.invoice-page .invoice-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 280px;
+  gap: 24px;
+}
+
+.invoice-page .invoice-field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #344054;
+}
+
+.invoice-page .invoice-field select,
+.invoice-page .invoice-field input,
+.invoice-page .invoice-item-input,
+.invoice-page .invoice-item-select {
+  width: 100%;
+  box-sizing: border-box;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid #d0d5dd;
+  border-radius: 7px;
+  background: #ffffff;
+  font-size: 14px;
+  color: #101828;
+  outline: none;
+}
+
+.invoice-page .invoice-field select:focus,
+.invoice-page .invoice-field input:focus,
+.invoice-page .invoice-item-input:focus,
+.invoice-page .invoice-item-select:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+}
+
+
+/* =================================
+   OTHER CUSTOMER
+================================= */
+
+.invoice-page .other-customer-box {
+  margin-top: 22px;
+  padding-top: 20px;
+  border-top: 1px solid #eaecf0;
+}
+
+.invoice-page .other-customer-title {
+  margin-bottom: 16px;
+  font-size: 15px;
+  font-weight: 700;
+  color: #172033;
+}
+
+.invoice-page .other-customer-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+
+/* =================================
+   ITEMS HEADER
+================================= */
+
+.invoice-page .items-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+.invoice-page .items-title {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #172033;
+}
+
+
+/* =================================
+   BUTTONS
+================================= */
+
+.invoice-page .add-item-button {
+  border: none;
+  background: #2563eb;
+  color: white;
+  padding: 10px 16px;
+  border-radius: 7px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.invoice-page .add-item-button:hover {
+  background: #1d4ed8;
+}
+
+.invoice-page .remove-item-button {
+  border: 1px solid #fecaca;
+  background: #fff5f5;
+  color: #dc2626;
+  padding: 8px 12px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 13px;
+}
+
+.invoice-page .remove-item-button:hover {
+  background: #fee2e2;
+}
+
+
+/* =================================
+   TABLE
+================================= */
+
+.invoice-page .invoice-table-wrapper {
+  overflow-x: auto;
+}
+
+.invoice-page .invoice-table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 850px;
+}
+
+.invoice-page .invoice-table th {
+  background: #f8fafc;
+  color: #475467;
+  font-size: 13px;
+  font-weight: 700;
+  text-align: left;
+  padding: 12px;
+  border-bottom: 1px solid #e4e7ec;
+}
+
+.invoice-page .invoice-table td {
+  padding: 12px;
+  border-bottom: 1px solid #eaecf0;
+  vertical-align: middle;
+}
+
+.invoice-page .serial-number {
+  width: 55px;
+  text-align: center;
+  font-weight: 600;
+}
+
+.invoice-page .qty-input {
+  width: 80px !important;
+}
+
+.invoice-page .rate-input {
+  width: 110px !important;
+}
+
+
+/* =================================
+   RUPEE / AMOUNT
+================================= */
+
+.invoice-page .amount-cell,
+.invoice-page .total-value {
+  font-family:
+    "Segoe UI",
+    "Segoe UI Symbol",
+    "Noto Sans",
+    Arial,
+    sans-serif;
+
+  font-variant-numeric: tabular-nums;
+}
+
+.invoice-page .amount-cell {
+  text-align: right;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #172033;
+}
+
+
+/* =================================
+   TOTAL
+================================= */
+
+.invoice-page .total-section {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 24px;
+}
+
+.invoice-page .total-box {
+  min-width: 220px;
+  border-top: 2px solid #172033;
+  padding-top: 12px;
+}
+
+.invoice-page .total-label {
+  font-size: 14px;
+  color: #667085;
+  text-align: right;
+}
+
+.invoice-page .total-value {
+  margin-top: 4px;
+  font-size: 26px;
+  font-weight: 700;
+  color: #172033;
+  text-align: right;
+  white-space: nowrap;
+}
+
+
+/* =================================
+   INPUT NUMBER
+================================= */
+
+.invoice-page input[type="number"] {
+  font-variant-numeric: tabular-nums;
+}
+
+
+/* =================================
+   MOBILE
+================================= */
+
+@media (max-width: 900px) {
+  .invoice-page .invoice-info-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .invoice-page .other-customer-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .invoice-page {
+    padding: 16px;
+  }
+
+  .invoice-page .invoice-title {
+    font-size: 24px;
+  }
+
+  .invoice-page .invoice-card {
+    padding: 16px;
+  }
+
+  .invoice-page .items-header {
+    align-items: flex-start;
+    gap: 12px;
+    flex-direction: column;
+  }
+
+  .invoice-page .add-item-button {
+    width: 100%;
+  }
+}
+
+
+/* =================================
+   SMALL SCREEN TABLE
+================================= */
+
+@media (max-width: 600px) {
+  .invoice-page .invoice-table {
+    min-width: 760px;
+  }
+
+  .invoice-page .total-value {
+    font-size: 24px;
+  }
+}

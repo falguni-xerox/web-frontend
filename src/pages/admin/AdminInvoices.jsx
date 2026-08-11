@@ -1,10 +1,27 @@
 import { useEffect, useState } from "react";
+import InvoiceActions from "./invoice/InvoiceActions";
+import InvoiceList from "./invoice/InvoiceList";
+import "./AdminInvoices.css";
+
+import {
+  calculateInvoiceTotal,
+  validateInvoiceItems,
+  prepareInvoiceItems,
+  createInvoice,
+} from "./invoice/invoiceHelpers";
 
 function AdminInvoices() {
   const [customers, setCustomers] = useState([]);
   const [services, setServices] = useState([]);
 
   const [customerId, setCustomerId] = useState("");
+  const [isOtherCustomer, setIsOtherCustomer] =
+    useState(false);
+
+  const [otherCustomer, setOtherCustomer] = useState({
+    name: "",
+  });
+
   const [invoiceDate, setInvoiceDate] = useState(
     new Date().toISOString().split("T")[0]
   );
@@ -16,11 +33,12 @@ function AdminInvoices() {
       rate: "",
       amount: 0,
       manual: false,
+      serviceId: "",
     },
   ]);
 
   // =================================
-  // FETCH CUSTOMERS
+  // FETCH REGULAR CUSTOMERS
   // =================================
 
   useEffect(() => {
@@ -36,7 +54,10 @@ function AdminInvoices() {
           setCustomers(data.customers || []);
         }
       } catch (error) {
-        console.error("Failed to fetch customers:", error);
+        console.error(
+          "Failed to fetch customers:",
+          error
+        );
       }
     };
 
@@ -60,7 +81,10 @@ function AdminInvoices() {
           setServices(data.services || []);
         }
       } catch (error) {
-        console.error("Failed to fetch invoice services:", error);
+        console.error(
+          "Failed to fetch invoice services:",
+          error
+        );
       }
     };
 
@@ -68,22 +92,65 @@ function AdminInvoices() {
   }, []);
 
   // =================================
-  // ITEM CHANGE
+  // CUSTOMER CHANGE
+  // =================================
+
+  const handleCustomerChange = (value) => {
+    if (value === "__other__") {
+      setCustomerId("");
+      setIsOtherCustomer(true);
+
+      setOtherCustomer({
+        name: "",
+      });
+
+      return;
+    }
+
+    setCustomerId(value);
+    setIsOtherCustomer(false);
+
+    setOtherCustomer({
+      name: "",
+    });
+  };
+
+  // =================================
+  // OTHER CUSTOMER UPDATE
+  // =================================
+
+  const updateOtherCustomer = (field, value) => {
+    setOtherCustomer((prev) => ({
+      ...prev,
+      [field]: value,
+    }));
+  };
+
+  // =================================
+  // UPDATE ITEM
   // =================================
 
   const updateItem = (index, field, value) => {
     setItems((prev) =>
       prev.map((item, i) => {
-        if (i !== index) return item;
+        if (i !== index) {
+          return item;
+        }
 
         const updated = {
           ...item,
           [field]: value,
         };
 
-        if (field === "qty" || field === "rate") {
-          const qty = Number(updated.qty) || 0;
-          const rate = Number(updated.rate) || 0;
+        if (
+          field === "qty" ||
+          field === "rate"
+        ) {
+          const qty =
+            Number(updated.qty) || 0;
+
+          const rate =
+            Number(updated.rate) || 0;
 
           updated.amount = qty * rate;
         }
@@ -94,40 +161,87 @@ function AdminInvoices() {
   };
 
   // =================================
-  // SERVICE SELECT
+  // SERVICE CHANGE
   // =================================
 
   const handleServiceChange = (index, value) => {
+    // =================================
+    // MANUAL DESCRIPTION
+    // =================================
+
     if (value === "__manual__") {
       setItems((prev) =>
-        prev.map((item, i) =>
-          i === index
-            ? {
-                ...item,
-                description: "",
-                rate: "",
-                amount: 0,
-                manual: true,
-              }
-            : item
-        )
+        prev.map((item, i) => {
+          if (i !== index) {
+            return item;
+          }
+
+          return {
+            ...item,
+            description: "",
+            rate: "",
+            amount: 0,
+            manual: true,
+            serviceId: "",
+          };
+        })
       );
 
       return;
     }
 
+    // =================================
+    // EMPTY SERVICE
+    // =================================
+
+    if (!value) {
+      setItems((prev) =>
+        prev.map((item, i) => {
+          if (i !== index) {
+            return item;
+          }
+
+          return {
+            ...item,
+            description: "",
+            rate: "",
+            amount: 0,
+            manual: false,
+            serviceId: "",
+          };
+        })
+      );
+
+      return;
+    }
+
+    // =================================
+    // FIND SERVICE
+    // =================================
+
     const service = services.find(
       (item) => item._id === value
     );
 
-    if (!service) return;
+    if (!service) {
+      return;
+    }
+
+    // =================================
+    // SET SERVICE
+    // =================================
 
     setItems((prev) =>
       prev.map((item, i) => {
-        if (i !== index) return item;
+        if (i !== index) {
+          return item;
+        }
 
-        const qty = Number(item.qty) || 0;
-        const rate = Number(service.defaultRate) || 0;
+        const qty =
+          Number(item.qty) || 0;
+
+        const rate =
+          Number(service.defaultRate) || 0;
 
         return {
           ...item,
@@ -154,6 +268,7 @@ function AdminInvoices() {
         rate: "",
         amount: 0,
         manual: false,
+        serviceId: "",
       },
     ]);
   };
@@ -163,7 +278,9 @@ function AdminInvoices() {
   // =================================
 
   const removeItem = (index) => {
-    if (items.length === 1) return;
+    if (items.length === 1) {
+      return;
+    }
 
     setItems((prev) =>
       prev.filter((_, i) => i !== index)
@@ -171,11 +288,153 @@ function AdminInvoices() {
   };
 
   // =================================
+  // CREATE INVOICE
+  // =================================
+
+  const handleCreateInvoice = async () => {
+    try {
+      // =================================
+      // CUSTOMER VALIDATION
+      // =================================
+
+      if (!customerId && !isOtherCustomer) {
+        alert("Please select a customer.");
+        return;
+      }
+
+      // =================================
+      // OTHER CUSTOMER VALIDATION
+      // =================================
+
+      if (
+        isOtherCustomer &&
+        !otherCustomer.name.trim()
+      ) {
+        alert("Please enter customer name.");
+        return;
+      }
+
+      // =================================
+      // VALIDATE ITEMS
+      // =================================
+
+      const validItems =
+        validateInvoiceItems(items);
+
+      if (validItems.length === 0) {
+        alert(
+          "Please add at least one invoice item."
+        );
+        return;
+      }
+
+      // =================================
+      // PREPARE CUSTOMER NAME
+      // =================================
+
+      let customerName = "";
+
+      if (isOtherCustomer) {
+        customerName =
+          otherCustomer.name.trim();
+      } else {
+        const selectedCustomer =
+          customers.find(
+            (customer) =>
+              customer._id === customerId
+          );
+
+        customerName =
+          selectedCustomer?.name || "";
+      }
+
+      // =================================
+      // PREPARE INVOICE ITEMS
+      // =================================
+
+      const invoiceItems =
+        prepareInvoiceItems(validItems);
+
+      // =================================
+      // CALCULATE TOTAL
+      // =================================
+
+      const invoiceTotal =
+        calculateInvoiceTotal(invoiceItems);
+
+      // =================================
+      // CREATE INVOICE
+      // =================================
+
+      const data = await createInvoice({
+        invoiceDate,
+
+        customerId: isOtherCustomer
+          ? ""
+          : customerId,
+
+        customerName,
+
+        items: invoiceItems,
+
+        total: invoiceTotal,
+      });
+
+      // =================================
+      // SUCCESS
+      // =================================
+
+      alert(
+        `Invoice ${
+          data.invoice?.invoiceNo || ""
+        } created successfully.`
+      );
+
+      // =================================
+      // RESET CUSTOMER
+      // =================================
+
+      setCustomerId("");
+      setIsOtherCustomer(false);
+
+      setOtherCustomer({
+        name: "",
+      });
+
+      // =================================
+      // RESET ITEMS
+      // =================================
+
+      setItems([
+        {
+          description: "",
+          qty: 1,
+          rate: "",
+          amount: 0,
+          manual: false,
+          serviceId: "",
+        },
+      ]);
+    } catch (error) {
+      console.error(
+        "Create invoice error:",
+        error
+      );
+
+      alert(
+        error.message ||
+          "Failed to create invoice."
+      );
+    }
+  };
+
+  // =================================
   // TOTAL
   // =================================
 
   const total = items.reduce(
-    (sum, item) => sum + (Number(item.amount) || 0),
+    (sum, item) =>
+      sum + (Number(item.amount) || 0),
     0
   );
 
@@ -184,56 +443,77 @@ function AdminInvoices() {
   // =================================
 
   return (
-    <div className="p-6">
-      <div className="max-w-6xl mx-auto">
+    <div className="invoice-page">
+      <div className="invoice-container">
 
-        {/* HEADER */}
+        {/* =================================
+            HEADER
+        ================================= */}
 
-        <div className="mb-6">
-          <h1 className="text-3xl font-bold">
-            Create Invoice
-          </h1>
+        <div className="invoice-header">
+          <div>
+            <h1 className="invoice-title">
+              Create Invoice
+            </h1>
 
-          <p className="text-gray-500 mt-1">
-            Falguni Xerox & Computer Work
-          </p>
+            <p className="invoice-subtitle">
+              Falguni Xerox & Computer Work
+            </p>
+          </div>
         </div>
 
-        {/* CUSTOMER / DATE */}
+        {/* =================================
+            CUSTOMER + DATE
+        ================================= */}
 
-        <div className="bg-white rounded-xl shadow p-6 mb-6">
+        <div className="invoice-card">
 
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <div className="invoice-info-grid">
 
-            <div>
-              <label className="block text-sm font-semibold mb-2">
+            {/* CUSTOMER */}
+
+            <div className="invoice-field">
+              <label>
                 Customer
               </label>
 
               <select
-                value={customerId}
-                onChange={(e) =>
-                  setCustomerId(e.target.value)
+                value={
+                  isOtherCustomer
+                    ? "__other__"
+                    : customerId
                 }
-                className="w-full border rounded-lg px-3 py-2"
+                onChange={(e) =>
+                  handleCustomerChange(
+                    e.target.value
+                  )
+                }
               >
                 <option value="">
-                  Select Regular Customer
+                  Select Customer
                 </option>
 
-                {customers.map((customer) => (
-                  <option
-                    key={customer._id}
-                    value={customer._id}
-                  >
-                    {customer.name}
-                  </option>
-                ))}
+                {customers.map(
+                  (customer) => (
+                    <option
+                      key={customer._id}
+                      value={customer._id}
+                    >
+                      {customer.name}
+                    </option>
+                  )
+                )}
+
+                <option value="__other__">
+                  Other Customer
+                </option>
               </select>
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold mb-2">
+            {/* DATE */}
+
+            <div className="invoice-field">
+              <label>
                 Invoice Date
               </label>
 
@@ -241,63 +521,114 @@ function AdminInvoices() {
                 type="date"
                 value={invoiceDate}
                 onChange={(e) =>
-                  setInvoiceDate(e.target.value)
+                  setInvoiceDate(
+                    e.target.value
+                  )
                 }
-                className="w-full border rounded-lg px-3 py-2"
               />
             </div>
 
           </div>
+
+          {/* =================================
+              OTHER CUSTOMER
+          ================================= */}
+
+          {isOtherCustomer && (
+            <div className="other-customer-box">
+
+              <div className="other-customer-title">
+                Other Customer Details
+              </div>
+
+              <div className="other-customer-grid">
+
+                <div className="invoice-field">
+                  <label>
+                    Customer Name
+                  </label>
+
+                  <input
+                    type="text"
+                    value={
+                      otherCustomer.name
+                    }
+                    onChange={(e) =>
+                      updateOtherCustomer(
+                        "name",
+                        e.target.value
+                      )
+                    }
+                    placeholder="Enter customer name"
+                  />
+                </div>
+
+              </div>
+
+            </div>
+          )}
+
         </div>
 
-        {/* ITEMS */}
+        {/* =================================
+            INVOICE ITEMS
+        ================================= */}
 
-        <div className="bg-white rounded-xl shadow p-6">
+        <div className="invoice-card">
 
-          <div className="flex justify-between items-center mb-4">
+          <div className="items-header">
 
-            <h2 className="text-xl font-bold">
+            <h2 className="items-title">
               Invoice Items
             </h2>
 
             <button
               type="button"
               onClick={addItem}
-              className="px-4 py-2 rounded-lg bg-blue-600 text-white"
+              className="add-item-button"
             >
               + Add Item
             </button>
 
           </div>
 
-          <div className="overflow-x-auto">
+          <div className="invoice-table-wrapper">
 
-            <table className="w-full border-collapse">
+            <table className="invoice-table">
 
               <thead>
-                <tr className="border-b">
+                <tr>
 
-                  <th className="text-left p-3">
+                  <th className="serial-number">
                     S.No
                   </th>
 
-                  <th className="text-left p-3">
+                  <th>
                     Description
                   </th>
 
-                  <th className="text-left p-3">
+                  <th>
                     Qty
                   </th>
 
-                  <th className="text-left p-3">
+                  <th>
                     Rate
                   </th>
 
-                  <th className="text-right p-3">
+                  <th
+                    style={{
+                      textAlign: "right",
+                    }}
+                  >
                     Amount
                   </th>
 
-                  <th className="p-3">
+                  <th
+                    style={{
+                      textAlign: "center",
+                    }}
+                  >
+                    Action
                   </th>
 
                 </tr>
@@ -305,127 +636,159 @@ function AdminInvoices() {
 
               <tbody>
 
-                {items.map((item, index) => (
+                {items.map(
+                  (item, index) => (
 
-                  <tr
-                    key={index}
-                    className="border-b"
-                  >
+                    <tr key={index}>
 
-                    <td className="p-3">
-                      {index + 1}
-                    </td>
+                      {/* S.NO */}
 
-                    <td className="p-3">
+                      <td className="serial-number">
+                        {index + 1}
+                      </td>
 
-                      {!item.manual ? (
-                        <select
-                          value={
-                            item.serviceId || ""
-                          }
-                          onChange={(e) =>
-                            handleServiceChange(
-                              index,
-                              e.target.value
-                            )
-                          }
-                          className="w-full border rounded-lg px-3 py-2"
-                        >
-                          <option value="">
-                            Select Service
-                          </option>
+                      {/* DESCRIPTION */}
 
-                          {services.map((service) => (
-                            <option
-                              key={service._id}
-                              value={service._id}
-                            >
-                              {service.name}
+                      <td>
+
+                        {!item.manual ? (
+
+                          <select
+                            value={
+                              item.serviceId || ""
+                            }
+                            onChange={(e) =>
+                              handleServiceChange(
+                                index,
+                                e.target.value
+                              )
+                            }
+                            className="invoice-item-select"
+                          >
+
+                            <option value="">
+                              Select Service
                             </option>
-                          ))}
 
-                          <option value="__manual__">
-                            Manual Description
-                          </option>
+                            {services.map(
+                              (service) => (
+                                <option
+                                  key={
+                                    service._id
+                                  }
+                                  value={
+                                    service._id
+                                  }
+                                >
+                                  {service.name}
+                                </option>
+                              )
+                            )}
 
-                        </select>
-                      ) : (
+                            <option value="__manual__">
+                              Manual Description
+                            </option>
+
+                          </select>
+
+                        ) : (
+
+                          <input
+                            type="text"
+                            value={
+                              item.description
+                            }
+                            onChange={(e) =>
+                              updateItem(
+                                index,
+                                "description",
+                                e.target.value
+                              )
+                            }
+                            placeholder="Enter description"
+                            className="invoice-item-input"
+                          />
+
+                        )}
+
+                      </td>
+
+                      {/* QTY */}
+
+                      <td>
+
                         <input
-                          type="text"
-                          value={item.description}
+                          type="number"
+                          min="1"
+                          value={item.qty}
                           onChange={(e) =>
                             updateItem(
                               index,
-                              "description",
+                              "qty",
                               e.target.value
                             )
                           }
-                          placeholder="Enter description"
-                          className="w-full border rounded-lg px-3 py-2"
+                          className="invoice-item-input qty-input"
                         />
-                      )}
 
-                    </td>
+                      </td>
 
-                    <td className="p-3">
+                      {/* RATE */}
 
-                      <input
-                        type="number"
-                        min="1"
-                        value={item.qty}
-                        onChange={(e) =>
-                          updateItem(
-                            index,
-                            "qty",
-                            e.target.value
-                          )
-                        }
-                        className="w-24 border rounded-lg px-3 py-2"
-                      />
+                      <td>
 
-                    </td>
+                        <input
+                          type="number"
+                          min="0"
+                          step="0.01"
+                          value={item.rate}
+                          onChange={(e) =>
+                            updateItem(
+                              index,
+                              "rate",
+                              e.target.value
+                            )
+                          }
+                          className="invoice-item-input rate-input"
+                        />
 
-                    <td className="p-3">
+                      </td>
 
-                      <input
-                        type="number"
-                        min="0"
-                        step="0.01"
-                        value={item.rate}
-                        onChange={(e) =>
-                          updateItem(
-                            index,
-                            "rate",
-                            e.target.value
-                          )
-                        }
-                        className="w-28 border rounded-lg px-3 py-2"
-                      />
+                      {/* AMOUNT */}
 
-                    </td>
+                      <td className="amount-cell">
 
-                    <td className="p-3 text-right font-semibold">
-                      ₹
-                      {Number(item.amount || 0).toFixed(2)}
-                    </td>
+                        &#8377;
+                        {Number(
+                          item.amount || 0
+                        ).toFixed(2)}
 
-                    <td className="p-3 text-center">
+                      </td>
 
-                      <button
-                        type="button"
-                        onClick={() =>
-                          removeItem(index)
-                        }
-                        className="text-red-600"
+                      {/* REMOVE */}
+
+                      <td
+                        style={{
+                          textAlign: "center",
+                        }}
                       >
-                        Remove
-                      </button>
 
-                    </td>
+                        <button
+                          type="button"
+                          onClick={() =>
+                            removeItem(index)
+                          }
+                          className="remove-item-button"
+                        >
+                          Remove
+                        </button>
 
-                  </tr>
+                      </td>
 
-                ))}
+                    </tr>
+
+                  )
+                )}
 
               </tbody>
 
@@ -433,27 +796,47 @@ function AdminInvoices() {
 
           </div>
 
-          {/* TOTAL */}
+          {/* =================================
+              TOTAL
+          ================================= */}
 
-          <div className="flex justify-end mt-6">
+          <div className="total-section">
 
-            <div className="text-right">
+            <div className="total-box">
 
-              <div className="text-gray-500">
+              <div className="total-label">
                 TOTAL
               </div>
 
-              <div className="text-3xl font-bold">
-                ₹{total.toFixed(2)}
+              <div className="total-value">
+                &#8377;
+                {total.toFixed(2)}
               </div>
 
             </div>
 
           </div>
 
+          {/* =================================
+              CREATE INVOICE
+          ================================= */}
+
+          <InvoiceActions
+            onCreateInvoice={
+              handleCreateInvoice
+            }
+          />
+
         </div>
 
       </div>
+
+      {/* =================================
+          INVOICE LIST
+      ================================= */}
+
+      <InvoiceList />
+
     </div>
   );
 }
