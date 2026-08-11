@@ -15,6 +15,7 @@ import AdminSettings from "../pages/admin/AdminSettings";
 import AdminServiceCategories from "../pages/admin/AdminServiceCategories";
 import AdminServices from "../pages/admin/AdminServices";
 import AdminSmartPrinting from "../pages/admin/AdminSmartPrinting";
+import AdminInvoices from "../pages/admin/AdminInvoices";
 
 import SmartPrintingLanguage from "../pages/SmartPrintingLanguage";
 import SmartPrintingDetails from "../pages/SmartPrintingDetails";
@@ -92,6 +93,14 @@ function AppRoutes() {
             <SmartPrintingDetails />
           }
         />
+        <Route
+  path="/admin/invoices"
+  element={
+    <AdminLayout>
+      <AdminInvoices />
+    </AdminLayout>
+  }
+/>
 
 
         {/* =================================
